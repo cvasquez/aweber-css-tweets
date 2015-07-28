@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'twitter'
+require 'date'
 
 helpers do
   def twitter
@@ -14,6 +15,7 @@ get "/tweets.css" do
   content_type "text/css"
   tweets = twitter.search(ENV.fetch("TWITTER_SEARCH_STRING"))
   tweets.take(15).map.with_index do |tweet, i|
+  d = DateTime.parse("#{tweet.created_at}")
     <<-CSS
       #tweet-#{i + 1} .copy:before {
         content: "#{tweet.text}";
@@ -26,6 +28,9 @@ get "/tweets.css" do
       }
       #tweet-#{i + 1} .avatar {
         background: url("#{tweet.user.profile_image_url}");
+      }
+      #tweet-#{i + 1} .timestamp:after {
+        content: "#{d.strftime('%m/%d')}";
       }
     CSS
   end
