@@ -15,13 +15,13 @@ get "/tweets.css" do
   tweets = twitter.search(ENV.fetch("TWITTER_SEARCH_STRING"))
   tweets.take(15).map.with_index do |tweet, i|
     <<-CSS
-      #tweet-#{i + 1} .copy {
+      #tweet-#{i + 1} .copy:before {
         content: "#{tweet.text}";
       }
-      #tweet-#{i + 1} .name {
+      #tweet-#{i + 1} .name:before {
         content: "#{tweet.user.name}";
       }
-      #tweet-#{i + 1} .handle {
+      #tweet-#{i + 1} .handle:after {
         content: "#{tweet.user.screen_name}";
       }
       #tweet-#{i + 1} .avatar {
