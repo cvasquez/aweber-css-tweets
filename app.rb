@@ -25,7 +25,7 @@ get "/tweets.css" do
         content: "#{tweet.user.screen_name}";
       }
       #tweet-#{i + 1} .avatar {
-        content: "#{tweet.user.profile_image_url}";
+        background: url("#{tweet.user.profile_image_url}");
       }
     CSS
   end
