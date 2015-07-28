@@ -18,6 +18,15 @@ get "/tweets.css" do
       #tweet-#{i + 1} .copy {
         content: "#{tweet.text}";
       }
+      #tweet-#{i + 1} .name {
+        content: "#{tweet.user.name}";
+      }
+      #tweet-#{i + 1} .handle {
+        content: "#{tweet.user.screen_name}";
+      }
+      #tweet-#{i + 1} .avatar {
+        content: "#{tweet.user.profile_image_url}";
+      }
     CSS
   end
 end
