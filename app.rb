@@ -16,9 +16,10 @@ get "/tweets.css" do
   tweets = twitter.search(ENV.fetch("TWITTER_SEARCH_STRING"))
   tweets.take(15).map.with_index do |tweet, i|
   d = DateTime.parse("#{tweet.created_at}")
+  tweetext = Rack::Utils.escape_html("#{tweet.text}")
     <<-CSS
       #tweet-#{i + 1} .copy:before {
-        content: '#{tweet.text}';
+        content: "#{tweetext}";
       }
       #tweet-#{i + 1} .name:before {
         content: "#{tweet.user.name}";
