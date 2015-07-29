@@ -19,7 +19,7 @@ get "/tweets.css" do
   tweetext = Rack::Utils.escape_html("#{tweet.text}")
     <<-CSS
       #tweet-#{i + 1} .copy:before {
-        content: "#{tweet.text.tr_s('&amp.', '')}";
+        content: "#{tweet.text}";
       }
       #tweet-#{i + 1} .name:before {
         content: "#{tweet.user.name}";
