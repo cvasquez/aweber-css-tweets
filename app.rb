@@ -18,7 +18,7 @@ get "/tweets.css" do
   d = DateTime.parse("#{tweet.created_at}")
     <<-CSS
       #tweet-#{i + 1} .copy:before {
-        content: "#{tweet.text}";
+        content: '#{tweet.text}';
       }
       #tweet-#{i + 1} .name:before {
         content: "#{tweet.user.name}";
